@@ -6,29 +6,31 @@ namespace StoreAppUI.Menus
      public void Start(){
         string option="";
 
-        do{
-
-            Console.WriteLine("\nWelcome to BetterBats!");
-            Console.WriteLine("[0]Login\n[1]Signup\n[2]Exit ");
+        Console.WriteLine("\nWelcome to BetterBats!");
+        Console.WriteLine("[0]Login\n[1]Signup\n[2]Exit ");
                 
-            option = Console.ReadLine();
+        option = Console.ReadLine();
 
-            switch(option){
-                case "0":
+        switch(option){
+
+            case "0":
                 IMenu customerOrManagerMenu = new CustomerOrManagerMenu();
                 customerOrManagerMenu.Start();
                 break;
+
                 case "1":
                 IMenu signupMenu = new SignupMenu();
                 signupMenu.Start();
                 break;
+
+                case "2":
+                break;
+
                 default:
                     Console.WriteLine("Not a Valid Option.");
                 break;
                 
             }
-
-        }while(option != "2");
         
 
         }

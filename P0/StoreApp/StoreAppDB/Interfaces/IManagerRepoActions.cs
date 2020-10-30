@@ -1,9 +1,11 @@
 using StoreAppDB.Models;
+using System.Collections.Generic;
 
 namespace StoreAppDB.Interfaces
 {
     public interface IManagerRepoActions
     {
-        void AddEmployeeAsync(Manager manager);
+        void AddBaseballBatIntoTable(BaseballBat baseballBat);
+        List<BaseballBat> GetAllBaseballBats();
     }
 }

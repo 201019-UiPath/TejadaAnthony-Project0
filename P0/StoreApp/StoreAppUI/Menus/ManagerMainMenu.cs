@@ -3,6 +3,7 @@ using StoreAppDB.Models;
 using StoreAppLib;
 using StoreAppDB;
 using StoreAppDB.Interfaces;
+
 namespace StoreAppUI.Menus
 {
     public class ManagerMainMenu :IMenu
@@ -27,7 +28,7 @@ namespace StoreAppUI.Menus
             Console.WriteLine("  \nManager Main Menu");
             Console.WriteLine("--------------------");
 
-            Console.WriteLine("[0]Location Order History [1]Update Location Inventory");
+            Console.WriteLine("[0]Location Order History \n[1]Update Location Inventory");
             option = Console.ReadLine();
 
             switch (option) {
@@ -45,7 +46,7 @@ namespace StoreAppUI.Menus
                     newBat.ProductType = Console.ReadLine();
 
                     Console.Write("Enter price of bat: ");
-                    newBat.ProductType = Console.ReadLine();
+                    newBat.ProductPrice = float.Parse(Console.ReadLine());
 
                     managerActions.AddBaseballBat(newBat);
 

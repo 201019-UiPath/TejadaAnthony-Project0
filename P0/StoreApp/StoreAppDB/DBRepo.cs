@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace StoreAppDB
 {
-    public class DBRepo : IManagerRepoActions
+    public class DBRepo : IManagerRepoActions, ICustomerRepoActions
     {
         private StoreAppContext context = new StoreAppContext();
         public DBRepo(StoreAppContext context)
@@ -31,11 +31,23 @@ namespace StoreAppDB
 
         public bool CheckIfManagerExists(string email, string password)
         {
-            var result = context.Managers.Any(o => o.Email == email);
+            var result = context.Managers.Any(o => o.Email == email && o.password == password);
 
             return result;
         }
 
-   
+        //Customer
+        public bool CheckIfCustomerExists(string email, string password)
+        {
+            var result = context.Customers.Any(o => o.Email == email && o.Password == password);
+
+            return result;
+        }
+
+        public void AddCustomerIntoTable(Customer newCustomer)
+        {
+            context.Customers.Add(newCustomer);
+            context.SaveChanges();
+        }
     }
 }

@@ -10,10 +10,12 @@ namespace StoreAppUI.Menus
 
         private StoreAppContext context;
         private IManagerRepoActions managerRepo;
-        public HomeMenu(StoreAppContext context,  IManagerRepoActions managerRepo)
+        private ICustomerRepoActions customerRepo;
+        public HomeMenu(StoreAppContext context,  IManagerRepoActions managerRepo, ICustomerRepoActions customerRepo)
         {
             this.context = context;
             this.managerRepo = managerRepo;
+            this.customerRepo = customerRepo;
         }
 
         public void Start(){
@@ -27,12 +29,12 @@ namespace StoreAppUI.Menus
         switch(option){
 
             case "0":
-                    IMenu loginMenu = new LoginMenu(context, managerRepo);
-                    loginMenu.Start();
+                IMenu loginMenu = new LoginMenu(context, managerRepo, customerRepo);
+                loginMenu.Start();
                 break;
 
                 case "1":
-                IMenu signupMenu = new SignupMenu();
+                IMenu signupMenu = new SignupMenu(context, customerRepo);
                 signupMenu.Start();
                 break;
 

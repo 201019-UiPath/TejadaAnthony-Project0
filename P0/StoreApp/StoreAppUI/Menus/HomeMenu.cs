@@ -1,9 +1,22 @@
 using System;
+using StoreAppDB;
+using StoreAppLib;
+using StoreAppDB.Interfaces;
+
 namespace StoreAppUI.Menus
 {
     public class HomeMenu : IMenu
     {
-     public void Start(){
+
+        private StoreAppContext context;
+        private IManagerRepoActions managerRepo;
+        public HomeMenu(StoreAppContext context,  IManagerRepoActions managerRepo)
+        {
+            this.context = context;
+            this.managerRepo = managerRepo;
+        }
+
+        public void Start(){
         string option="";
 
         Console.WriteLine("\nWelcome to BetterBats!");
@@ -14,8 +27,8 @@ namespace StoreAppUI.Menus
         switch(option){
 
             case "0":
-                IMenu customerOrManagerMenu = new CustomerOrManagerMenu();
-                customerOrManagerMenu.Start();
+                    IMenu loginMenu = new LoginMenu(context, managerRepo);
+                    loginMenu.Start();
                 break;
 
                 case "1":

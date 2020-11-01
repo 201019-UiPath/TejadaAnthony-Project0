@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using StoreAppDB.Models;
 
-namespace StoreAppDB.Models
+namespace StoreAppDB
 {
     public class StoreAppContext : DbContext
     {
@@ -33,11 +34,5 @@ namespace StoreAppDB.Models
             }
         }
 
-        // protected override void OnModelCreating(ModelBuilder modelBuilder) {
-        //     modelBuilder.Entity<Inventory>()
-        //     .HasOne(e => e.Locations)
-        //     .WithMany(c => c.Products);
-
-        // }
     }
 }

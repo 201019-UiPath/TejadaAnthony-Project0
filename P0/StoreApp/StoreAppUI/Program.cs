@@ -1,6 +1,6 @@
 ﻿using System;
-using StoreAppLib;
 using StoreAppUI.Menus;
+using StoreAppDB;
 
 namespace StoreAppUI
 {
@@ -8,8 +8,8 @@ namespace StoreAppUI
     {
         static void Main(string[] args)
         {
-            IMenu homeMenu = new HomeMenu();
-
+            StoreAppContext context = new StoreAppContext();
+            IMenu homeMenu = new HomeMenu(context, new DBRepo(context));
             homeMenu.Start();
         }
     }

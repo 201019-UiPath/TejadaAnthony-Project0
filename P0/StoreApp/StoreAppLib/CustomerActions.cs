@@ -26,6 +26,10 @@ namespace StoreAppLib
             repoActions.AddCustomerIntoTable(newCustomer);
         }
 
+        public Customer GetCustomerByEmail(string email) {
+            return repoActions.GetCustomerByEmail(email);
+        }
+
 
     }
 }

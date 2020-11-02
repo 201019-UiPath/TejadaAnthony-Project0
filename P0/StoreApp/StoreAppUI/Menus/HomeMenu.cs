@@ -9,27 +9,39 @@ namespace StoreAppUI.Menus
     {
 
         private StoreAppContext context;
+
         private IManagerRepoActions managerRepo;
         private ICustomerRepoActions customerRepo;
-        public HomeMenu(StoreAppContext context,  IManagerRepoActions managerRepo, ICustomerRepoActions customerRepo)
+        private ILocationRepoActions locationRepo;
+        private IBaseballBatRepoActions baseballBatRepo;
+        private IOrderRepoActions orderRepo;
+        private IInventoryRepoActions inventoryRepo;
+        public HomeMenu(StoreAppContext context,  IManagerRepoActions managerRepo, ICustomerRepoActions customerRepo, ILocationRepoActions locationRepo, IBaseballBatRepoActions baseballBatRepo, IOrderRepoActions orderRepo, IInventoryRepoActions inventoryRepo)
         {
             this.context = context;
             this.managerRepo = managerRepo;
             this.customerRepo = customerRepo;
+            this.locationRepo = locationRepo;
+            this.baseballBatRepo = baseballBatRepo;
+            this.orderRepo = orderRepo;
+            this.inventoryRepo = inventoryRepo;
         }
 
         public void Start(){
-        string option="";
 
-        Console.WriteLine("\nWelcome to BetterBats!");
-        Console.WriteLine("[0]Login\n[1]Signup\n[2]Exit ");
+            string option="";
+
+            Console.WriteLine("--------------------------");
+            Console.WriteLine("  WELCOME TO BETTERBATS!");
+            Console.WriteLine("--------------------------");
+            Console.WriteLine("[0]Login [1]Signup [2]Exit ");
                 
-        option = Console.ReadLine();
+            option = Console.ReadLine();
 
-        switch(option){
+            switch(option){
 
-            case "0":
-                IMenu loginMenu = new LoginMenu(context, managerRepo, customerRepo);
+                case "0":
+                IMenu loginMenu = new LoginMenu(context, managerRepo, customerRepo, locationRepo, baseballBatRepo, orderRepo, inventoryRepo);
                 loginMenu.Start();
                 break;
 

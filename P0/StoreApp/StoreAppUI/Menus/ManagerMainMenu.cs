@@ -8,27 +8,33 @@ namespace StoreAppUI.Menus
 {
     public class ManagerMainMenu :IMenu
     {
-        StoreAppContext context;
+        private StoreAppContext context;
 
-        IManagerRepoActions managerRepoActions;
+        private IManagerRepoActions managerRepoActions;
+        private ILocationRepoActions locationRepoActions;
 
-        ManagerActions managerActions;
-        public ManagerMainMenu(StoreAppContext context, IManagerRepoActions managerRepoActions)
+        private ManagerActions managerActions;
+
+        private Location location;
+        public ManagerMainMenu(StoreAppContext context, IManagerRepoActions managerRepoActions, ILocationRepoActions locationRepoActions ,Location location)
         {
             this.context = context;
             this.managerRepoActions = managerRepoActions;
 
             this.managerActions = new ManagerActions(context,managerRepoActions);
+
+            this.location = location;
         }
 
         
         public void Start(){
             string option = "";
 
-            Console.WriteLine("  \nManager Main Menu");
-            Console.WriteLine("--------------------");
+            Console.WriteLine("---------------------");
+            Console.WriteLine("  MANAGER MAIN MENU");
+            Console.WriteLine("---------------------");
 
-            Console.WriteLine("[0]Location Order History \n[1]Update Location Inventory");
+            Console.WriteLine($"[0]View {location.LocationName} Order History \n[1]Replenish {location.LocationName} Inventory");
             option = Console.ReadLine();
 
             switch (option) {
@@ -37,18 +43,36 @@ namespace StoreAppUI.Menus
 
                     break;
                 case "1":
-                    BaseballBat newBat = new BaseballBat();
+                    // //get new list set it equal to getbaseballBatsbylocation() 
 
-                    Console.Write("Enter name of bat: ");
-                    newBat.ProductName = Console.ReadLine();
+                    // // for each product in products print out contents.
 
-                    Console.Write("Enter type of bat(Metal or Wood): ");
-                    newBat.ProductType = Console.ReadLine();
+                    // BaseballBat newBat = new BaseballBat();
 
-                    Console.Write("Enter price of bat: ");
-                    newBat.ProductPrice = float.Parse(Console.ReadLine());
+                    // Console.Write("Enter name of bat: ");
+                    // newBat.ProductName = Console.ReadLine();
 
-                    managerActions.AddBaseballBat(newBat);
+                    // Console.Write("Enter type of bat(Metal or Wood): ");
+                    // newBat.ProductType = Console.ReadLine();
+
+                    // Console.Write("Enter price of bat: ");
+                    // newBat.ProductPrice = float.Parse(Console.ReadLine());
+
+                    // //ask for how many want to add
+
+                    // managerActions.AddBaseballBat(newBat);
+
+                    // //updateinventory(newbat.id, quantity, locationId ); 
+
+
+                    /* print list of products at this location 
+
+                        Enter pruduct id 
+                        Enter Quantity
+                            updaTE quantity on yhat product
+                                print list agfin with updateed quanity 
+                    */
+
 
                     break;
                 default:

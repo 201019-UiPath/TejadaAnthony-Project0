@@ -6,5 +6,7 @@ namespace StoreAppDB.Interfaces
     {
          bool CheckIfCustomerExists(string email, string password );
         void AddCustomerIntoTable(Customer newCustomer);
+
+        Customer GetCustomerByEmail(string email);
     }
 }

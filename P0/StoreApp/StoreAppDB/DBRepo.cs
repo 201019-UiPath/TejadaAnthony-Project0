@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace StoreAppDB
 {
-    public class DBRepo : IManagerRepoActions, ICustomerRepoActions
+    public class DBRepo : IManagerRepoActions, ICustomerRepoActions, IBaseballBatRepoActions, ILocationRepoActions, IOrderRepoActions, IInventoryRepoActions
     {
         private StoreAppContext context = new StoreAppContext();
         public DBRepo(StoreAppContext context)
@@ -49,5 +49,45 @@ namespace StoreAppDB
             context.Customers.Add(newCustomer);
             context.SaveChanges();
         }
+
+        public Customer GetCustomerByEmail(string email)
+        {
+            var result = context.Customers.Single(d => d.Email == email);
+
+            return result;
+        }
+
+        //baseballbats
+        public List<BaseballBat> GetBaseballBatsByLocation(int id)
+        {
+            // var result = context.BaseballBats
+            //                     .Where
+
+            throw new System.NotImplementedException();
+        }
+        //locations
+        public List<Location> GetAllLocations()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Location GetLocationById(int locationId)
+        {
+            var result = context.Locations.Single(d => d.LocationId == locationId);
+
+            return result;
+        }
+        //inventory 
+        public void UpdateInventoryQuantity(int batId, int quantity, int locationId)
+        {
+            throw new NotImplementedException();
+        }
+        //orders
+        public void AddOrderToTable(Orders order)
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

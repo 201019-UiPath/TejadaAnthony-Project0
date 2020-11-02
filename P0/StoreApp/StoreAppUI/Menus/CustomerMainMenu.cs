@@ -7,22 +7,35 @@ namespace StoreAppUI.Menus
 {
     public class CustomerMainMenu : IMenu
     {
+        Location currLocation;
+        Customer signedInCustomer;
         StoreAppContext context;
 
         CustomerActions customerActions;
-        ICustomerRepoActions customerRepoActions;
+        LocationActions locationActions;
 
-        public CustomerMainMenu(StoreAppContext context, ICustomerRepoActions customerRepoActions )
+        ICustomerRepoActions customerRepoActions;
+        ILocationRepoActions locationRepoActions;
+        IOrderRepoActions orderRepoActions;
+        public CustomerMainMenu(StoreAppContext context, ICustomerRepoActions customerRepoActions,  ILocationRepoActions locationRepoActions, IOrderRepoActions orderRepoActions, Customer signedInCustomer, Location location)
         {
             this.context = context;
-            this.customerRepoActions = customerRepoActions;
 
             this.customerActions = new CustomerActions(context, customerRepoActions);
+            this.locationActions = new LocationActions(context, locationRepoActions);
+
+            this.customerRepoActions = customerRepoActions;
+            this.locationRepoActions = locationRepoActions;
+
+            this.currLocation = location;
+            this.signedInCustomer = signedInCustomer;
+
         }
 
         public void Start(){
-
-            Console.Write("Customer Main Menu!");
+            Console.WriteLine("------------------------");
+            Console.WriteLine("  CUSTOMER MAIN MENU");
+            Console.WriteLine("------------------------");
 
         }
     }

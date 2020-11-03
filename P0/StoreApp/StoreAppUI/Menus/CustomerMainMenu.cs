@@ -4,6 +4,7 @@ using StoreAppDB;
 using StoreAppDB.Interfaces;
 using System;
 using StoreAppDB.Models;
+using Serilog;
 namespace StoreAppUI.Menus
 {
     public class CustomerMainMenu : IMenu
@@ -43,7 +44,7 @@ namespace StoreAppUI.Menus
         public void Start(){
 
             string option = "";
-
+            Log.Information("Entered Main Menu");
             Console.WriteLine("------------------------");
             Console.WriteLine("  CUSTOMER MAIN MENU");
             Console.WriteLine("------------------------");
@@ -89,9 +90,20 @@ namespace StoreAppUI.Menus
                         newOrder.CustomerId = signedInCustomer.CustomerId;
                         
                         inventory.Quantity -= quantity;
+                        try 
+                        {
+                            inventoryActions.UpdateInventory(inventory);
+                            orderActions.AddNewOrder(newOrder);
+                        }
+                        catch (Exception e) {
 
-                        inventoryActions.UpdateInventory(inventory);
-                        orderActions.AddNewOrder(newOrder);
+                            Log.Error($"Exception {e} was thrown");
+                        }
+                        finally 
+                        {
+                            Log.Information("Finally block reached");
+                        }
+
 
                         Console.Write("Order Placed! Buy More? (y/n):");
                         placeOrder = Console.ReadLine();

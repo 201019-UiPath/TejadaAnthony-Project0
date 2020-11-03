@@ -4,6 +4,7 @@ using StoreAppLib;
 using StoreAppDB;
 using StoreAppDB.Interfaces;
 using System.Collections.Generic;
+using Serilog;
 
 namespace StoreAppUI.Menus
 {
@@ -96,6 +97,7 @@ namespace StoreAppUI.Menus
                         inventory.Quantity += replenish;
 
                         inventoryActions.UpdateInventory(inventory);
+                        Log.Information("Inventory Updated By Manger");
 
                         Console.Write("Updated Inventory! Continue? (y/n):");
                         done = Console.ReadLine();

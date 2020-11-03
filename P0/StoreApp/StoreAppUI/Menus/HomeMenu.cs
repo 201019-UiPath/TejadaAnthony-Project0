@@ -2,6 +2,7 @@ using System;
 using StoreAppDB;
 using StoreAppLib;
 using StoreAppDB.Interfaces;
+using Serilog;
 
 namespace StoreAppUI.Menus
 {
@@ -54,6 +55,7 @@ namespace StoreAppUI.Menus
                 break;
 
                 default:
+                    Log.Warning("Invalid Option Chosen!");
                     Console.WriteLine("Not a Valid Option.");
                 break;
                 

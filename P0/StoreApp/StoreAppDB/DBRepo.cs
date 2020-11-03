@@ -21,12 +21,6 @@ namespace StoreAppDB
             context.BaseballBats.Add(baseballbat);
             context.SaveChanges();
 
-            
-        }
-
-        public List<Orders> GetOrderHistoryByLocation(Location location)
-        {
-            throw new System.NotImplementedException();
         }
 
         public bool CheckIfManagerExists(string email, string password)

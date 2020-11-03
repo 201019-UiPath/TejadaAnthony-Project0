@@ -3,6 +3,7 @@ using StoreAppDB;
 using StoreAppLib;
 using StoreAppDB.Interfaces;
 using StoreAppDB.Models;
+using Serilog;
 
 namespace StoreAppUI.Menus
 {   
@@ -63,18 +64,22 @@ namespace StoreAppUI.Menus
             choosenLocation = locationActions.GetLocationById(location);
             signedInCustomer = customerActions.GetCustomerByEmail(email);
 
-            if (managerActions.ManagerExists(email,passWord)) {
 
-                IMenu managerMainMenu = new ManagerMainMenu(context, managerRepoActions, locationRepoActions, inventoryRepoActions, orderRepoActions, choosenLocation);
-                managerMainMenu.Start();
+            try 
+            { 
+                if (managerActions.ManagerExists(email,passWord)) {
+
+                    IMenu managerMainMenu = new ManagerMainMenu(context, managerRepoActions, locationRepoActions, inventoryRepoActions, orderRepoActions, choosenLocation);
+                    managerMainMenu.Start();
+                    Log.Information("Manager Logged In");
+                }
+                else if(customerActions.CustomerExists(email,passWord)){
+                    IMenu customerMainMenu = new CustomerMainMenu(context, customerRepoActions, locationRepoActions, orderRepoActions, inventoryRepoActions, signedInCustomer, choosenLocation);
+                    customerMainMenu.Start();
+                    Log.Information("Customer Logged In");
+                }
             }
-            else if(customerActions.CustomerExists(email,passWord)){
-                IMenu customerMainMenu = new CustomerMainMenu(context, customerRepoActions, locationRepoActions, orderRepoActions, inventoryRepoActions, signedInCustomer, choosenLocation);
-                customerMainMenu.Start();
-            }
-            else {
-                Console.WriteLine("User not found");
-            }
+            catch (Exception e){ Console.WriteLine("Error: "+ e.Message); }
 
 
 

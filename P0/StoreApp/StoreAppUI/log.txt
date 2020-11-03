@@ -1,0 +1,6 @@
+2020-11-03 10:55:32.819 -05:00 [INF] Program Started
+2020-11-03 11:04:32.110 -05:00 [INF] Program Started
+2020-11-03 11:04:48.593 -05:00 [INF] Entered Main Menu
+2020-11-03 11:05:04.949 -05:00 [INF] Finally block reached
+2020-11-03 11:05:47.531 -05:00 [INF] Program Started
+2020-11-03 11:06:16.589 -05:00 [INF] Inventory Updated By Manger

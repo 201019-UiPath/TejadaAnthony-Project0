@@ -52,9 +52,9 @@ namespace StoreAppUI.Menus
                     List<Orders> orders = new List<Orders>();
                     orders = orderActions.GetOrdersByLocationId(location.LocationId);
 
-                    Console.WriteLine("------------------------------------");
-                    Console.WriteLine("Order Date | LoactionId | CustomerId ");
-                    Console.WriteLine("------------------------------------");
+                    Console.WriteLine("-----------------------------------------------------");
+                    Console.WriteLine("        Order Date          | LoactionId | CustomerId ");
+                    Console.WriteLine("-----------------------------------------------------");
 
                     foreach (Orders order in orders) { 
                         
@@ -97,7 +97,7 @@ namespace StoreAppUI.Menus
 
                         inventoryActions.UpdateInventory(inventory);
 
-                        Console.WriteLine("Updated Inventory! Continue? (y/n)");
+                        Console.Write("Updated Inventory! Continue? (y/n):");
                         done = Console.ReadLine();
 
                     } while (done !="n");

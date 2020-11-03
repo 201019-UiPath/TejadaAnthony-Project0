@@ -60,36 +60,40 @@ namespace StoreAppUI.Menus
                         List<Inventory> currInventory = new List<Inventory>();
 
                         currInventory = inventoryActions.GetInventoryByLocationId(currLocation.LocationId);
-                        Console.WriteLine("----------------");
-                        Console.WriteLine("BatID | Quantity ");
-                        Console.WriteLine("----------------");
+                        Console.WriteLine("------------------------------------");
+                        Console.WriteLine("InventoryId  | BatID | Quantity ");
+                        Console.WriteLine("------------------------------------");
                         foreach (Inventory Inventory in currInventory)
                         {
-                            Console.WriteLine($"{Inventory.BaseballBatsId}     |     {Inventory.Quantity}");
+                            Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |    {Inventory.Quantity}");
                         }
 
                         Orders newOrder = new Orders();
                         Inventory inventory = new Inventory();
                         DateTime nowTime = new DateTime();
 
-                        Console.WriteLine(" Order by Entering The BatId and Quantity Desired");
+                        int invId;
+                        int quantity;
 
-                        Console.Write("BatId: ");
-                        inventory.BaseballBatsId = int.Parse(Console.ReadLine());
+                        Console.WriteLine(" Order by Entering The InventoryId and Quantity Desired");
+
+                        Console.Write("InventoryId: ");
+                        invId = int.Parse(Console.ReadLine());
+                        inventory=inventoryActions.GetInventoryById(invId);
 
                         Console.Write("Quantity: ");
-                        inventory.Quantity = int.Parse(Console.ReadLine());
+                        quantity = int.Parse(Console.ReadLine());
 
                         newOrder.OrderDate = nowTime.ToString();
                         newOrder.LocationId = currLocation.LocationId;
                         newOrder.CustomerId = signedInCustomer.CustomerId;
-                        inventory.LocationId = currLocation.LocationId;
+                        
+                        inventory.Quantity -= quantity;
 
-                    
                         inventoryActions.UpdateInventory(inventory);
                         orderActions.AddNewOrder(newOrder);
 
-                        Console.WriteLine("Order Placed! Buy More? (y/n)");
+                        Console.Write("Order Placed! Buy More? (y/n):");
                         placeOrder = Console.ReadLine();
 
                     } while (placeOrder !="n");
@@ -97,6 +101,17 @@ namespace StoreAppUI.Menus
                     break;
 
                 case "1":
+                 List<Orders> orders = new List<Orders>();
+                    orders = orderActions.GetOrdersByCustomerId(signedInCustomer.CustomerId);
+
+                    Console.WriteLine("-----------------------------------------------------");
+                    Console.WriteLine("        Order Date          | LoactionId | CustomerId ");
+                    Console.WriteLine("-----------------------------------------------------");
+
+                    foreach (Orders order in orders) { 
+                        
+                        Console.WriteLine($"     {order.OrderDate}       |   {order.LocationId}    |    {order.CustomerId}  ");
+                    }
                     break;
                 default:
                     Console.WriteLine("Invalid option");

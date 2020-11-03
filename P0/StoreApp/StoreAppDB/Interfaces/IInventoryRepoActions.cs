@@ -6,7 +6,9 @@ namespace StoreAppDB.Interfaces
 {
     public interface IInventoryRepoActions
     {
-        void UpdateInventoryQuantity(int batId, int quantity, int locationId);
+        void UpdateInventoryQuantity(Inventory inventory);
         List<Inventory> GetInventoryByLocationId(int id);
+
+        Inventory GetInventoryRecordByInventoryNumber(int id);
     }
 }

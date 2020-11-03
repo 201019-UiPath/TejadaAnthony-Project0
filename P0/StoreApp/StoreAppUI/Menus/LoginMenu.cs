@@ -65,7 +65,7 @@ namespace StoreAppUI.Menus
 
             if (managerActions.ManagerExists(email,passWord)) {
 
-                IMenu managerMainMenu = new ManagerMainMenu(context, managerRepoActions, locationRepoActions, choosenLocation);
+                IMenu managerMainMenu = new ManagerMainMenu(context, managerRepoActions, locationRepoActions, inventoryRepoActions, orderRepoActions, choosenLocation);
                 managerMainMenu.Start();
             }
             else if(customerActions.CustomerExists(email,passWord)){

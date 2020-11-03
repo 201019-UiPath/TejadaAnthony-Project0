@@ -21,5 +21,16 @@ namespace StoreAppLib
             return inventoryRepo.GetInventoryByLocationId(id);
 
         }
+
+
+        public void UpdateInventory(Inventory inventory) { 
+                inventoryRepo.UpdateInventoryQuantity(inventory);
+        }
+
+        public Inventory GetInventoryById(int id) {
+
+            return inventoryRepo.GetInventoryRecordByInventoryNumber(id);
+
+        }
     }
 }

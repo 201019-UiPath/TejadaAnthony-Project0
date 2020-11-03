@@ -7,6 +7,7 @@ namespace StoreAppDB.Interfaces
     {
         void AddOrderToTable(Orders order);
 
-        List<Orders> GetOrdersByIdAndLocation(int id, int locationId);
+        List<Orders> GetOrdersByLocationId(int locationId);
+        List<Orders> GetOrdersByCustomerId(int cusId);
     }
 }

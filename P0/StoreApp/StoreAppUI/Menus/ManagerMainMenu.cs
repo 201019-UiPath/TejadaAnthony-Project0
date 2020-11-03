@@ -3,6 +3,7 @@ using StoreAppDB.Models;
 using StoreAppLib;
 using StoreAppDB;
 using StoreAppDB.Interfaces;
+using System.Collections.Generic;
 
 namespace StoreAppUI.Menus
 {
@@ -12,16 +13,24 @@ namespace StoreAppUI.Menus
 
         private IManagerRepoActions managerRepoActions;
         private ILocationRepoActions locationRepoActions;
+        private IInventoryRepoActions inventoryRepoActions;
+        private IOrderRepoActions orderRepoActions;
 
         private ManagerActions managerActions;
+        private InventoryActions inventoryActions;
+        private OrderActions orderActions;
 
         private Location location;
-        public ManagerMainMenu(StoreAppContext context, IManagerRepoActions managerRepoActions, ILocationRepoActions locationRepoActions ,Location location)
+        public ManagerMainMenu(StoreAppContext context, IManagerRepoActions managerRepoActions, ILocationRepoActions locationRepoActions, IInventoryRepoActions inventoryRepoActions, IOrderRepoActions orderRepoActions ,Location location)
         {
             this.context = context;
             this.managerRepoActions = managerRepoActions;
+            this.inventoryRepoActions = inventoryRepoActions;
+            this.orderRepoActions = orderRepoActions;
 
             this.managerActions = new ManagerActions(context,managerRepoActions);
+            this.inventoryActions = new InventoryActions(context,inventoryRepoActions);
+            this.orderActions = new OrderActions(context, orderRepoActions);
 
             this.location = location;
         }
@@ -40,38 +49,58 @@ namespace StoreAppUI.Menus
             switch (option) {
 
                 case "0":
+                    List<Orders> orders = new List<Orders>();
+                    orders = orderActions.GetOrdersByLocationId(location.LocationId);
+
+                    Console.WriteLine("------------------------------------");
+                    Console.WriteLine("Order Date | LoactionId | CustomerId ");
+                    Console.WriteLine("------------------------------------");
+
+                    foreach (Orders order in orders) { 
+                        
+                        Console.WriteLine($"     {order.OrderDate}       |   {order.LocationId}    |    {order.CustomerId}  ");
+                    }
 
                     break;
                 case "1":
-                    // //get new list set it equal to getbaseballBatsbylocation() 
+                    
+                    string done="";
+                    do {
+                        List<Inventory> currInventory = new List<Inventory>();
 
-                    // // for each product in products print out contents.
+                        currInventory = inventoryActions.GetInventoryByLocationId(location.LocationId);
+                        Console.WriteLine("------------------------------------");
+                        Console.WriteLine("InventoryId  | BatID | Quantity ");
+                        Console.WriteLine("------------------------------------");
+                        foreach (Inventory Inventory in currInventory)
+                        {
+                            Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |    {Inventory.Quantity}");
+                        }
 
-                    // BaseballBat newBat = new BaseballBat();
+                        Inventory inventory = new Inventory();
+                        int id;
+                        int replenish;
 
-                    // Console.Write("Enter name of bat: ");
-                    // newBat.ProductName = Console.ReadLine();
+                        Console.WriteLine("--------------------");
+                        Console.WriteLine("  UPDATE INVENTORY");
+                        Console.WriteLine("--------------------");
 
-                    // Console.Write("Enter type of bat(Metal or Wood): ");
-                    // newBat.ProductType = Console.ReadLine();
+                        Console.Write("Inventory ID: ");
+                        id = int.Parse(Console.ReadLine());
 
-                    // Console.Write("Enter price of bat: ");
-                    // newBat.ProductPrice = float.Parse(Console.ReadLine());
+                        inventory = inventoryActions.GetInventoryById(id);
 
-                    // //ask for how many want to add
+                        Console.Write("Amount to Replenish?: ");
+                        replenish = int.Parse(Console.ReadLine());
 
-                    // managerActions.AddBaseballBat(newBat);
+                        inventory.Quantity += replenish;
 
-                    // //updateinventory(newbat.id, quantity, locationId ); 
+                        inventoryActions.UpdateInventory(inventory);
 
+                        Console.WriteLine("Updated Inventory! Continue? (y/n)");
+                        done = Console.ReadLine();
 
-                    /* print list of products at this location 
-
-                        Enter pruduct id 
-                        Enter Quantity
-                            updaTE quantity on yhat product
-                                print list agfin with updateed quanity 
-                    */
+                    } while (done !="n");
 
 
                     break;

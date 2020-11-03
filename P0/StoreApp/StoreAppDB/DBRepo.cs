@@ -52,7 +52,7 @@ namespace StoreAppDB
 
         public Customer GetCustomerByEmail(string email)
         {
-            var result = context.Customers.Single(d => d.Email == email);
+            var result = context.Customers.SingleOrDefault(d => d.Email == email);
 
             return result;
         }
@@ -73,29 +73,44 @@ namespace StoreAppDB
 
         public Location GetLocationById(int locationId)
         {
-            var result = context.Locations.Single(d => d.LocationId == locationId);
+            var result = context.Locations.SingleOrDefault(d => d.LocationId == locationId);
 
             return result;
         }
         //inventory 
-        public void UpdateInventoryQuantity(int batId, int quantity, int locationId)
+        public void UpdateInventoryQuantity(Inventory inventory)
         {
-            throw new NotImplementedException();
+            var result =context.Inventory.SingleOrDefault(a => a.InventoryId == inventory.InventoryId);
+            result.Quantity = inventory.Quantity;
+            context.SaveChanges();
+            
         }
         public List<Inventory> GetInventoryByLocationId(int id)
         {
             return context.Inventory.Select(x => x).Where(x => x.LocationId==id).ToList();
         }
+        public Inventory GetInventoryRecordByInventoryNumber(int id)
+        {
+            return context.Inventory.SingleOrDefault(f => f.InventoryId == id);
+             
+        }
         //orders
         public void AddOrderToTable(Orders order)
         {
-            throw new NotImplementedException();
+            context.Orders.Add(order);
+            context.SaveChanges();
         }
 
-        public List<Orders> GetOrdersByIdAndLocation(int id, int locationId)
+        public List<Orders> GetOrdersByLocationId(int locationId)
         {
-            throw new NotImplementedException();
+            return context.Orders.Select(x => x).Where(x => x.LocationId == locationId).ToList();
         }
-        
+
+        public List<Orders> GetOrdersByCustomerId(int cusId)
+        {
+            return context.Orders.Select(x => x).Where(x => x.CustomerId == cusId).ToList();
+        }
+
+      
     }
 }

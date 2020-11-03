@@ -69,7 +69,7 @@ namespace StoreAppUI.Menus
                 managerMainMenu.Start();
             }
             else if(customerActions.CustomerExists(email,passWord)){
-                IMenu customerMainMenu = new CustomerMainMenu(context, customerRepoActions, locationRepoActions, orderRepoActions, signedInCustomer, choosenLocation);
+                IMenu customerMainMenu = new CustomerMainMenu(context, customerRepoActions, locationRepoActions, orderRepoActions, inventoryRepoActions, signedInCustomer, choosenLocation);
                 customerMainMenu.Start();
             }
             else {

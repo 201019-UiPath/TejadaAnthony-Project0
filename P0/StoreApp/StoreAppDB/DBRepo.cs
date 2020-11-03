@@ -82,12 +82,20 @@ namespace StoreAppDB
         {
             throw new NotImplementedException();
         }
+        public List<Inventory> GetInventoryByLocationId(int id)
+        {
+            return context.Inventory.Select(x => x).Where(x => x.LocationId==id).ToList();
+        }
         //orders
         public void AddOrderToTable(Orders order)
         {
             throw new NotImplementedException();
         }
 
-
+        public List<Orders> GetOrdersByIdAndLocation(int id, int locationId)
+        {
+            throw new NotImplementedException();
+        }
+        
     }
 }

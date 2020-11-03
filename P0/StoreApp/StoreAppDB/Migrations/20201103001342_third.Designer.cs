@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using StoreAppDB;
@@ -9,9 +10,10 @@ using StoreAppDB;
 namespace StoreAppDB.Migrations
 {
     [DbContext(typeof(StoreAppContext))]
-    partial class StoreAppContextModelSnapshot : ModelSnapshot
+    [Migration("20201103001342_third")]
+    partial class third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +70,7 @@ namespace StoreAppDB.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("BaseballBatsId")
+                    b.Property<int?>("BaseballBatsId")
                         .HasColumnType("integer");
 
                     b.Property<int>("LocationId")
@@ -157,9 +159,7 @@ namespace StoreAppDB.Migrations
                 {
                     b.HasOne("StoreAppDB.Models.BaseballBat", "BaseballBats")
                         .WithMany()
-                        .HasForeignKey("BaseballBatsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BaseballBatsId");
 
                     b.HasOne("StoreAppDB.Models.Location", "Location")
                         .WithMany("Inventory")

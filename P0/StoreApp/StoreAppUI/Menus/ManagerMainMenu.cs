@@ -38,81 +38,86 @@ namespace StoreAppUI.Menus
 
         
         public void Start(){
-            string option = "";
+            while (true)
+            {
+                string option = "";
 
-            Console.WriteLine("---------------------");
-            Console.WriteLine("  MANAGER MAIN MENU");
-            Console.WriteLine("---------------------");
+                Console.WriteLine("---------------------");
+                Console.WriteLine("  MANAGER MAIN MENU");
+                Console.WriteLine("---------------------");
 
-            Console.WriteLine($"[0]View {location.LocationName} Order History \n[1]Replenish {location.LocationName} Inventory");
-            option = Console.ReadLine();
+                Console.WriteLine($"[0]View {location.LocationName} Order History \n[1]Replenish {location.LocationName} Inventory");
+                option = Console.ReadLine();
 
-            switch (option) {
+                switch (option)
+                {
 
-                case "0":
-                    List<Orders> orders = new List<Orders>();
-                    orders = orderActions.GetOrdersByLocationId(location.LocationId);
+                    case "0":
+                        List<Orders> orders = new List<Orders>();
+                        orders = orderActions.GetOrdersByLocationId(location.LocationId);
 
-                    Console.WriteLine("-----------------------------------------------------");
-                    Console.WriteLine("        Order Date          | LoactionId | CustomerId ");
-                    Console.WriteLine("-----------------------------------------------------");
+                        Console.WriteLine("-----------------------------------------------------");
+                        Console.WriteLine("        Order Date          | LoactionId | CustomerId ");
+                        Console.WriteLine("-----------------------------------------------------");
 
-                    foreach (Orders order in orders) { 
-                        
-                        Console.WriteLine($"     {order.OrderDate}       |   {order.LocationId}    |    {order.CustomerId}  ");
-                    }
-
-                    break;
-                case "1":
-                    
-                    string done="";
-                    do {
-                        List<Inventory> currInventory = new List<Inventory>();
-
-                        currInventory = inventoryActions.GetInventoryByLocationId(location.LocationId);
-                        Console.WriteLine("------------------------------------");
-                        Console.WriteLine("InventoryId  | BatID | Quantity ");
-                        Console.WriteLine("------------------------------------");
-                        foreach (Inventory Inventory in currInventory)
+                        foreach (Orders order in orders)
                         {
-                            Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |    {Inventory.Quantity}");
+
+                            Console.WriteLine($"     {order.OrderDate}       |   {order.LocationId}    |    {order.CustomerId}  ");
                         }
 
-                        Inventory inventory = new Inventory();
-                        int id;
-                        int replenish;
+                        break;
+                    case "1":
 
-                        Console.WriteLine("--------------------");
-                        Console.WriteLine("  UPDATE INVENTORY");
-                        Console.WriteLine("--------------------");
+                        string done = "";
+                        do
+                        {
+                            List<Inventory> currInventory = new List<Inventory>();
 
-                        Console.Write("Inventory ID: ");
-                        id = int.Parse(Console.ReadLine());
+                            currInventory = inventoryActions.GetInventoryByLocationId(location.LocationId);
+                            Console.WriteLine("------------------------------------");
+                            Console.WriteLine("InventoryId  | BatID | Quantity ");
+                            Console.WriteLine("------------------------------------");
+                            foreach (Inventory Inventory in currInventory)
+                            {
+                                Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |    {Inventory.Quantity}");
+                            }
 
-                        inventory = inventoryActions.GetInventoryById(id);
+                            Inventory inventory = new Inventory();
+                            int id;
+                            int replenish;
 
-                        Console.Write("Amount to Replenish?: ");
-                        replenish = int.Parse(Console.ReadLine());
+                            Console.WriteLine("-------------------------------");
+                            Console.WriteLine("  UPDATE INVENTORY");
+                            Console.WriteLine("-------------------------------");
 
-                        inventory.Quantity += replenish;
+                            Console.Write("Inventory ID: ");
+                            id = int.Parse(Console.ReadLine());
 
-                        inventoryActions.UpdateInventory(inventory);
-                        Log.Information("Inventory Updated By Manger");
+                            inventory = inventoryActions.GetInventoryById(id);
 
-                        Console.Write("Updated Inventory! Continue? (y/n):");
-                        done = Console.ReadLine();
+                            Console.Write("Amount to Replenish?: ");
+                            replenish = int.Parse(Console.ReadLine());
 
-                    } while (done !="n");
+                            inventory.Quantity += replenish;
+
+                            inventoryActions.UpdateInventory(inventory);
+                            Log.Information("Inventory Updated By Manger");
+
+                            Console.Write("Updated Inventory! Continue? (y/n):");
+                            done = Console.ReadLine();
+
+                        } while (done != "n");
 
 
-                    break;
-                default:
-                    Console.WriteLine("Wrong option!");
-                    break;
+                        break;
+                    default:
+                        Console.WriteLine("Wrong option!");
+                        break;
 
 
+                }
             }
-
 
         }
     }

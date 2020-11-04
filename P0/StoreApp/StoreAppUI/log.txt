@@ -49,3 +49,30 @@
 2020-11-04 00:57:55.057 -05:00 [INF] Program Started
 2020-11-04 00:58:31.400 -05:00 [INF] Manager Logged In
 2020-11-04 09:01:40.182 -05:00 [INF] Program Started
+2020-11-04 09:24:14.267 -05:00 [INF] Program Started
+2020-11-04 09:27:33.878 -05:00 [INF] Manager Logged In
+2020-11-04 09:27:47.457 -05:00 [INF] Program Started
+2020-11-04 09:28:17.032 -05:00 [INF] Entered Main Menu
+2020-11-04 09:28:44.652 -05:00 [INF] Finally block reached
+2020-11-04 09:33:17.987 -05:00 [INF] Program Started
+2020-11-04 09:33:44.031 -05:00 [INF] Manager Logged In
+2020-11-04 09:33:56.485 -05:00 [INF] Program Started
+2020-11-04 09:34:34.050 -05:00 [INF] Inventory Updated By Manger
+2020-11-04 09:35:46.832 -05:00 [INF] Program Started
+2020-11-04 09:36:10.391 -05:00 [INF] Entered Main Menu
+2020-11-04 09:36:14.224 -05:00 [INF] Customer Logged In
+2020-11-04 09:42:48.234 -05:00 [INF] Program Started
+2020-11-04 09:42:59.416 -05:00 [INF] Entered Main Menu
+2020-11-04 09:43:03.206 -05:00 [INF] Entered Main Menu
+2020-11-04 09:43:40.682 -05:00 [INF] Program Started
+2020-11-04 09:43:54.564 -05:00 [INF] Entered Main Menu
+2020-11-04 09:43:59.615 -05:00 [INF] Program Started
+2020-11-04 09:44:16.157 -05:00 [INF] Entered Main Menu
+2020-11-04 09:44:21.131 -05:00 [INF] Finally block reached
+2020-11-04 09:44:45.421 -05:00 [INF] Finally block reached
+2020-11-04 09:44:46.608 -05:00 [INF] Entered Main Menu
+2020-11-04 09:48:33.964 -05:00 [INF] Program Started
+2020-11-04 09:49:03.125 -05:00 [INF] Program Started
+2020-11-04 09:49:16.221 -05:00 [INF] Entered Main Menu
+2020-11-04 09:49:55.468 -05:00 [INF] Program Started
+2020-11-04 09:50:40.364 -05:00 [INF] Program Started

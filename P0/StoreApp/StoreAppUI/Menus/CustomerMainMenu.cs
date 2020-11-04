@@ -42,94 +42,98 @@ namespace StoreAppUI.Menus
         }
 
         public void Start(){
+            while (true)
+            {
+                string option = "";
+                Log.Information("Entered Main Menu");
+                Console.WriteLine("------------------------");
+                Console.WriteLine("  CUSTOMER MAIN MENU");
+                Console.WriteLine("------------------------");
+                Console.WriteLine($"USER: {signedInCustomer.Name} at {currLocation.LocationName}");
 
-            string option = "";
-            Log.Information("Entered Main Menu");
-            Console.WriteLine("------------------------");
-            Console.WriteLine("  CUSTOMER MAIN MENU");
-            Console.WriteLine("------------------------");
-            Console.WriteLine($"USER: {signedInCustomer.Name} at {currLocation.LocationName}");
+                Console.WriteLine("[0]View Inventory/Place Order [1]View Order History");
+                option = Console.ReadLine();
 
-            Console.WriteLine("[0]View Inventory/Place Order [1]View Order History");
-            option = Console.ReadLine();
-
-            switch (option) 
-            { 
-                case "0":
-                    string placeOrder="";
-                    do {   
-                        List<Inventory> currInventory = new List<Inventory>();
-
-                        currInventory = inventoryActions.GetInventoryByLocationId(currLocation.LocationId);
-                        Console.WriteLine("------------------------------------");
-                        Console.WriteLine("InventoryId  | BatID | Quantity ");
-                        Console.WriteLine("------------------------------------");
-                        foreach (Inventory Inventory in currInventory)
+                switch (option)
+                {
+                    case "0":
+                        string placeOrder = "";
+                        do
                         {
-                            Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |    {Inventory.Quantity}");
-                        }
+                            List<Inventory> currInventory = new List<Inventory>();
 
-                        Orders newOrder = new Orders();
-                        Inventory inventory = new Inventory();
-                        
+                            currInventory = inventoryActions.GetInventoryByLocationId(currLocation.LocationId);
+                            Console.WriteLine("------------------------------------");
+                            Console.WriteLine("InventoryId  | BatID | Quantity ");
+                            Console.WriteLine("------------------------------------");
+                            foreach (Inventory Inventory in currInventory)
+                            {
+                                Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |    {Inventory.Quantity}");
+                            }
 
-                        int invId;
-                        int quantity;
+                            Orders newOrder = new Orders();
+                            Inventory inventory = new Inventory();
 
-                        Console.WriteLine(" Order by Entering The InventoryId and Quantity Desired");
 
-                        Console.Write("InventoryId: ");
-                        invId = int.Parse(Console.ReadLine());
-                        inventory=inventoryActions.GetInventoryById(invId);
+                            int invId;
+                            int quantity;
 
-                        Console.Write("Quantity: ");
-                        quantity = int.Parse(Console.ReadLine());
+                            Console.WriteLine(" Order by Entering The InventoryId and Quantity Desired");
 
-                        newOrder.OrderDate = DateTime.Now.ToString();
-                        newOrder.LocationId = currLocation.LocationId;
-                        newOrder.CustomerId = signedInCustomer.CustomerId;
-                        
-                        inventory.Quantity -= quantity;
-                        try 
+                            Console.Write("InventoryId: ");
+                            invId = int.Parse(Console.ReadLine());
+                            inventory = inventoryActions.GetInventoryById(invId);
+
+                            Console.Write("Quantity: ");
+                            quantity = int.Parse(Console.ReadLine());
+
+                            newOrder.OrderDate = DateTime.Now.ToString();
+                            newOrder.LocationId = currLocation.LocationId;
+                            newOrder.CustomerId = signedInCustomer.CustomerId;
+
+                            inventory.Quantity -= quantity;
+                            try
+                            {
+                                inventoryActions.UpdateInventory(inventory);
+                                orderActions.AddNewOrder(newOrder);
+                            }
+                            catch (Exception e)
+                            {
+
+                                Log.Error($"Exception {e} was thrown");
+                            }
+                            finally
+                            {
+                                Log.Information("Finally block reached");
+                            }
+
+
+                            Console.Write("Order Placed! Buy More? (y/n):");
+                            placeOrder = Console.ReadLine();
+
+                        } while (placeOrder != "n");
+                        break;
+
+                    case "1":
+                        List<Orders> orders = new List<Orders>();
+                        orders = orderActions.GetOrdersByCustomerId(signedInCustomer.CustomerId);
+
+                        Console.WriteLine("-----------------------------------------------------");
+                        Console.WriteLine("        Order Date          | LoactionId | CustomerId ");
+                        Console.WriteLine("-----------------------------------------------------");
+
+                        foreach (Orders order in orders)
                         {
-                            inventoryActions.UpdateInventory(inventory);
-                            orderActions.AddNewOrder(newOrder);
+
+                            Console.WriteLine($"     {order.OrderDate}       |   {order.LocationId}    |    {order.CustomerId}  ");
                         }
-                        catch (Exception e) {
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option");
+                        break;
+                }
 
-                            Log.Error($"Exception {e} was thrown");
-                        }
-                        finally 
-                        {
-                            Log.Information("Finally block reached");
-                        }
-
-
-                        Console.Write("Order Placed! Buy More? (y/n):");
-                        placeOrder = Console.ReadLine();
-
-                    } while (placeOrder !="n");
-                    break;
-
-                case "1":
-                 List<Orders> orders = new List<Orders>();
-                    orders = orderActions.GetOrdersByCustomerId(signedInCustomer.CustomerId);
-
-                    Console.WriteLine("-----------------------------------------------------");
-                    Console.WriteLine("        Order Date          | LoactionId | CustomerId ");
-                    Console.WriteLine("-----------------------------------------------------");
-
-                    foreach (Orders order in orders) { 
-                        
-                        Console.WriteLine($"     {order.OrderDate}       |   {order.LocationId}    |    {order.CustomerId}  ");
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Invalid option");
-                    break;
             }
-
-
         }
     }
 }

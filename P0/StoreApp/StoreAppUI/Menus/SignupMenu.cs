@@ -10,11 +10,23 @@ namespace StoreAppUI.Menus
     {
         StoreAppContext context;
         CustomerActions customerActions;
-        ICustomerRepoActions customerRepoActions;
-        public SignupMenu(StoreAppContext context, ICustomerRepoActions customerRepoActions) {
+
+        private IManagerRepoActions managerRepoActions;
+        private ICustomerRepoActions customerRepoActions;
+        private ILocationRepoActions locationRepoActions;
+        private IBaseballBatRepoActions baseballBatRepoActions;
+        private IOrderRepoActions orderRepoActions;
+        private IInventoryRepoActions inventoryRepoActions;
+        public SignupMenu(StoreAppContext context, IManagerRepoActions managerRepoActions, ICustomerRepoActions customerRepoActions, ILocationRepoActions locationRepoActions, IBaseballBatRepoActions baseballBatRepoActions, IOrderRepoActions orderRepoActions, IInventoryRepoActions inventoryRepoActions) {
 
             this.context = context;
+
             this.customerRepoActions=customerRepoActions;
+            this.managerRepoActions  = managerRepoActions;
+            this.locationRepoActions = locationRepoActions;
+            this.inventoryRepoActions = inventoryRepoActions;
+            this.baseballBatRepoActions = baseballBatRepoActions;
+            this.orderRepoActions = orderRepoActions;
 
             this.customerActions = new CustomerActions(context, customerRepoActions);
 
@@ -39,6 +51,10 @@ namespace StoreAppUI.Menus
 
             if (!customerActions.CustomerExists(newCustomer.Email, newCustomer.Password)) {
                 customerActions.AddCustomer(newCustomer); 
+
+                IMenu loginMenu = new LoginMenu(context, managerRepoActions, customerRepoActions, locationRepoActions, baseballBatRepoActions, orderRepoActions, inventoryRepoActions);
+                loginMenu.Start();
+
                 }
             else {
                 Console.WriteLine("User Already Exists..");

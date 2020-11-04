@@ -35,9 +35,12 @@ namespace StoreAppUI.Menus
             Console.WriteLine("--------------------------");
             Console.WriteLine("  WELCOME TO BETTERBATS!");
             Console.WriteLine("--------------------------");
-            Console.WriteLine("[0]Login [1]Signup [2]Exit ");
-                
-            option = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("[0]Login [1]Signup [2]Exit ");
+                option = Console.ReadLine();
+            }
+            while (option != "2" && option!= "1" && option!="0");
 
             switch(option){
 
@@ -47,7 +50,7 @@ namespace StoreAppUI.Menus
                 break;
 
                 case "1":
-                IMenu signupMenu = new SignupMenu(context, customerRepo);
+                IMenu signupMenu = new SignupMenu(context, managerRepo, customerRepo, locationRepo, baseballBatRepo, orderRepo, inventoryRepo);
                 signupMenu.Start();
                 break;
 

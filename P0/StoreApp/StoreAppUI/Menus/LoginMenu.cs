@@ -41,23 +41,26 @@ namespace StoreAppUI.Menus
         }
         public void Start(){
 
-            string email="";
-            string passWord="";
-            int location ;
+            string email = "";
+            string passWord = "";
+            int location;
 
             Console.WriteLine("---------------------");
             Console.WriteLine("       LOGIN");
             Console.WriteLine("---------------------");
-
+            
             Console.Write("Email: ");
             email = Console.ReadLine();
 
             Console.Write("Password: ");
             passWord = Console.ReadLine();
 
-            Console.Write("Select Location [1]BetterBatsOne [2]BetterBatsTwo: ");
-            location=int.Parse(Console.ReadLine());
-
+            do
+            {
+                Console.Write("Select Location [1]BetterBatsOne [2]BetterBatsTwo: ");
+                location = int.Parse(Console.ReadLine());
+            }
+            while (location != 1 && location !=2);
             Location choosenLocation = new Location();
             Customer signedInCustomer = new Customer();
 
@@ -65,21 +68,23 @@ namespace StoreAppUI.Menus
             signedInCustomer = customerActions.GetCustomerByEmail(email);
 
 
-            try 
-            { 
-                if (managerActions.ManagerExists(email,passWord)) {
+            try
+            {
+                if (managerActions.ManagerExists(email, passWord))
+                {
 
                     IMenu managerMainMenu = new ManagerMainMenu(context, managerRepoActions, locationRepoActions, inventoryRepoActions, orderRepoActions, choosenLocation);
                     managerMainMenu.Start();
                     Log.Information("Manager Logged In");
                 }
-                else if(customerActions.CustomerExists(email,passWord)){
+                else if (customerActions.CustomerExists(email, passWord))
+                {
                     IMenu customerMainMenu = new CustomerMainMenu(context, customerRepoActions, locationRepoActions, orderRepoActions, inventoryRepoActions, signedInCustomer, choosenLocation);
                     customerMainMenu.Start();
                     Log.Information("Customer Logged In");
                 }
             }
-            catch (Exception e){ Console.WriteLine("Error: "+ e.Message); }
+            catch (Exception e) { Console.WriteLine("Error: " + e.Message); }
 
 
 

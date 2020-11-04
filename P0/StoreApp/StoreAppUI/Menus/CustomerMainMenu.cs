@@ -71,7 +71,7 @@ namespace StoreAppUI.Menus
 
                         Orders newOrder = new Orders();
                         Inventory inventory = new Inventory();
-                        DateTime nowTime = new DateTime();
+                        
 
                         int invId;
                         int quantity;
@@ -85,7 +85,7 @@ namespace StoreAppUI.Menus
                         Console.Write("Quantity: ");
                         quantity = int.Parse(Console.ReadLine());
 
-                        newOrder.OrderDate = nowTime.ToString();
+                        newOrder.OrderDate = DateTime.Now.ToString();
                         newOrder.LocationId = currLocation.LocationId;
                         newOrder.CustomerId = signedInCustomer.CustomerId;
                         
@@ -109,7 +109,6 @@ namespace StoreAppUI.Menus
                         placeOrder = Console.ReadLine();
 
                     } while (placeOrder !="n");
-
                     break;
 
                 case "1":

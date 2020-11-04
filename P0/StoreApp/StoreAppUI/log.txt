@@ -4,3 +4,48 @@
 2020-11-03 11:05:04.949 -05:00 [INF] Finally block reached
 2020-11-03 11:05:47.531 -05:00 [INF] Program Started
 2020-11-03 11:06:16.589 -05:00 [INF] Inventory Updated By Manger
+2020-11-03 11:31:30.975 -05:00 [INF] Program Started
+2020-11-03 11:32:06.097 -05:00 [INF] Program Started
+2020-11-03 11:38:26.134 -05:00 [INF] Program Started
+2020-11-03 11:40:24.978 -05:00 [INF] Program Started
+2020-11-03 11:40:40.194 -05:00 [INF] Entered Main Menu
+2020-11-03 11:43:28.487 -05:00 [INF] Customer Logged In
+2020-11-03 11:43:36.206 -05:00 [INF] Program Started
+2020-11-03 11:44:04.947 -05:00 [INF] Entered Main Menu
+2020-11-03 11:44:14.993 -05:00 [INF] Finally block reached
+2020-11-03 11:44:47.199 -05:00 [INF] Finally block reached
+2020-11-03 11:44:51.401 -05:00 [INF] Customer Logged In
+2020-11-03 13:11:42.933 -05:00 [INF] Program Started
+2020-11-03 13:11:57.657 -05:00 [INF] Entered Main Menu
+2020-11-03 13:12:09.733 -05:00 [INF] Finally block reached
+2020-11-03 21:22:07.596 -05:00 [INF] Program Started
+2020-11-03 21:22:36.103 -05:00 [INF] Entered Main Menu
+2020-11-03 21:22:50.269 -05:00 [INF] Customer Logged In
+2020-11-03 21:22:55.532 -05:00 [INF] Program Started
+2020-11-03 21:23:09.021 -05:00 [INF] Entered Main Menu
+2020-11-03 21:23:47.442 -05:00 [INF] Finally block reached
+2020-11-03 21:24:00.339 -05:00 [INF] Program Started
+2020-11-03 21:24:47.845 -05:00 [INF] Inventory Updated By Manger
+2020-11-03 22:01:21.909 -05:00 [INF] Program Started
+2020-11-03 23:47:57.702 -05:00 [INF] Program Started
+2020-11-03 23:48:47.235 -05:00 [INF] Program Started
+2020-11-03 23:49:10.185 -05:00 [INF] Program Started
+2020-11-03 23:49:11.541 -05:00 [WRN] Invalid Option Chosen!
+2020-11-03 23:51:17.643 -05:00 [INF] Program Started
+2020-11-03 23:52:19.923 -05:00 [INF] Program Started
+2020-11-03 23:53:52.716 -05:00 [INF] Program Started
+2020-11-03 23:57:43.704 -05:00 [INF] Program Started
+2020-11-03 23:58:19.193 -05:00 [INF] Manager Logged In
+2020-11-04 00:04:46.130 -05:00 [INF] Program Started
+2020-11-04 00:05:15.924 -05:00 [INF] Entered Main Menu
+2020-11-04 00:05:27.161 -05:00 [INF] Customer Logged In
+2020-11-04 00:55:03.370 -05:00 [INF] Program Started
+2020-11-04 00:56:01.695 -05:00 [INF] Entered Main Menu
+2020-11-04 00:56:20.109 -05:00 [INF] Finally block reached
+2020-11-04 00:56:52.709 -05:00 [INF] Program Started
+2020-11-04 00:57:08.867 -05:00 [INF] Program Started
+2020-11-04 00:57:24.019 -05:00 [INF] Entered Main Menu
+2020-11-04 00:57:29.014 -05:00 [INF] Customer Logged In
+2020-11-04 00:57:55.057 -05:00 [INF] Program Started
+2020-11-04 00:58:31.400 -05:00 [INF] Manager Logged In
+2020-11-04 09:01:40.182 -05:00 [INF] Program Started

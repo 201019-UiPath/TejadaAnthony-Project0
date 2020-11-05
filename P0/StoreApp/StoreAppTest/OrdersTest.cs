@@ -18,7 +18,7 @@ namespace StoreAppTest
             IOrderRepoActions orderRepo = new DBRepo(context);
             Orders testOrder = new Orders();
 
-            testOrder.Id = "1";
+            testOrder.Id = 1;
             testOrder.OrderDate =  DateTime.Now.ToString();
             testOrder.LocationId = 2;
             testOrder.CustomerId = 2;

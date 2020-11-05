@@ -5,5 +5,7 @@ namespace StoreAppDB.Interfaces
     public interface IBaseballBatRepoActions
     {
         List<BaseballBat> GetBaseballBatsByLocation(int id);
+
+        BaseballBat GetBaseballBatById(int id);
     }
 }

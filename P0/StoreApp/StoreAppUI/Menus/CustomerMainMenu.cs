@@ -17,12 +17,14 @@ namespace StoreAppUI.Menus
         LocationActions locationActions;
         InventoryActions inventoryActions;
         OrderActions orderActions;
+        BaseballBatActions batActions;
 
         ICustomerRepoActions customerRepoActions;
         ILocationRepoActions locationRepoActions;
         IOrderRepoActions orderRepoActions;
         IInventoryRepoActions inventoryRepoActions;
-        public CustomerMainMenu(StoreAppContext context, ICustomerRepoActions customerRepoActions,  ILocationRepoActions locationRepoActions, IOrderRepoActions orderRepoActions, IInventoryRepoActions inventoryRepoActions, Customer signedInCustomer, Location location)
+        IBaseballBatRepoActions batRepoActions;
+        public CustomerMainMenu(StoreAppContext context, ICustomerRepoActions customerRepoActions,  ILocationRepoActions locationRepoActions, IOrderRepoActions orderRepoActions, IInventoryRepoActions inventoryRepoActions, IBaseballBatRepoActions batRepoActions,Customer signedInCustomer, Location location)
         {
             this.context = context;
 
@@ -35,6 +37,7 @@ namespace StoreAppUI.Menus
             this.locationRepoActions = locationRepoActions;
             this.orderRepoActions = orderRepoActions;
             this.inventoryRepoActions = inventoryRepoActions;
+            this.batRepoActions = batRepoActions;
 
             this.currLocation = location;
             this.signedInCustomer = signedInCustomer;
@@ -57,17 +60,16 @@ namespace StoreAppUI.Menus
                 switch (option)
                 {
                     case "0":
-                        string placeOrder = "";
-                        do
-                        {
                             List<Inventory> currInventory = new List<Inventory>();
 
                             currInventory = inventoryActions.GetInventoryByLocationId(currLocation.LocationId);
+                            
                             Console.WriteLine("------------------------------------");
                             Console.WriteLine("InventoryId  | BatID | Quantity ");
                             Console.WriteLine("------------------------------------");
                             foreach (Inventory Inventory in currInventory)
-                            {
+                            {   
+                                
                                 Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |    {Inventory.Quantity}");
                             }
 
@@ -106,12 +108,7 @@ namespace StoreAppUI.Menus
                             {
                                 Log.Information("Finally block reached");
                             }
-
-
-                            Console.Write("Order Placed! Buy More? (y/n):");
-                            placeOrder = Console.ReadLine();
-
-                        } while (placeOrder != "n");
+                        
                         break;
 
                     case "1":

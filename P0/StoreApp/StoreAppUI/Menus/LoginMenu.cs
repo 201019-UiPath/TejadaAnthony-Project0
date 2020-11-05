@@ -64,22 +64,20 @@ namespace StoreAppUI.Menus
             Location choosenLocation = new Location();
             Customer signedInCustomer = new Customer();
 
-            choosenLocation = locationActions.GetLocationById(location);
-            signedInCustomer = customerActions.GetCustomerByEmail(email);
-
-
             try
             {
                 if (managerActions.ManagerExists(email, passWord))
-                {
+                {   
+                    choosenLocation = locationActions.GetLocationById(location);
+                    signedInCustomer = customerActions.GetCustomerByEmail(email);
 
-                    IMenu managerMainMenu = new ManagerMainMenu(context, managerRepoActions, locationRepoActions, inventoryRepoActions, orderRepoActions, choosenLocation);
+                    IMenu managerMainMenu = new ManagerMainMenu(context, managerRepoActions, locationRepoActions, inventoryRepoActions, orderRepoActions, baseballBatRepoActions, choosenLocation);
                     managerMainMenu.Start();
                     Log.Information("Manager Logged In");
                 }
                 else if (customerActions.CustomerExists(email, passWord))
                 {
-                    IMenu customerMainMenu = new CustomerMainMenu(context, customerRepoActions, locationRepoActions, orderRepoActions, inventoryRepoActions, signedInCustomer, choosenLocation);
+                    IMenu customerMainMenu = new CustomerMainMenu(context, customerRepoActions, locationRepoActions, orderRepoActions, inventoryRepoActions, baseballBatRepoActions,signedInCustomer, choosenLocation);
                     customerMainMenu.Start();
                     Log.Information("Customer Logged In");
                 }

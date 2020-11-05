@@ -52,6 +52,10 @@ namespace StoreAppDB
         }
 
         //baseballbats
+        public BaseballBat GetBaseballBatById(int id)
+        {
+            return context.BaseballBats.SingleOrDefault(d => d.Id ==id );
+        }
         public List<BaseballBat> GetBaseballBatsByLocation(int id)
         {
             // var result = context.BaseballBats
@@ -105,6 +109,5 @@ namespace StoreAppDB
             return context.Orders.Select(x => x).Where(x => x.CustomerId == cusId).ToList();
         }
 
-      
     }
 }

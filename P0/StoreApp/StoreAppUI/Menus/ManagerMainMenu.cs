@@ -16,22 +16,27 @@ namespace StoreAppUI.Menus
         private ILocationRepoActions locationRepoActions;
         private IInventoryRepoActions inventoryRepoActions;
         private IOrderRepoActions orderRepoActions;
+        private IBaseballBatRepoActions batRepoActions;
 
         private ManagerActions managerActions;
         private InventoryActions inventoryActions;
         private OrderActions orderActions;
 
+        private BaseballBatActions batActions;
+
         private Location location;
-        public ManagerMainMenu(StoreAppContext context, IManagerRepoActions managerRepoActions, ILocationRepoActions locationRepoActions, IInventoryRepoActions inventoryRepoActions, IOrderRepoActions orderRepoActions ,Location location)
+        public ManagerMainMenu(StoreAppContext context, IManagerRepoActions managerRepoActions, ILocationRepoActions locationRepoActions, IInventoryRepoActions inventoryRepoActions, IOrderRepoActions orderRepoActions, IBaseballBatRepoActions batRepoActions ,Location location)
         {
             this.context = context;
             this.managerRepoActions = managerRepoActions;
             this.inventoryRepoActions = inventoryRepoActions;
             this.orderRepoActions = orderRepoActions;
+            this.batRepoActions = batRepoActions;
 
             this.managerActions = new ManagerActions(context,managerRepoActions);
             this.inventoryActions = new InventoryActions(context,inventoryRepoActions);
             this.orderActions = new OrderActions(context, orderRepoActions);
+            this.batActions = new BaseballBatActions(context, batRepoActions);
 
             this.location = location;
         }
@@ -55,32 +60,34 @@ namespace StoreAppUI.Menus
                     case "0":
                         List<Orders> orders = new List<Orders>();
                         orders = orderActions.GetOrdersByLocationId(location.LocationId);
+                        
 
-                        Console.WriteLine("-----------------------------------------------------");
-                        Console.WriteLine("        Order Date          | LoactionId | CustomerId ");
-                        Console.WriteLine("-----------------------------------------------------");
+                        Console.WriteLine("------------------------------------------------------------------------------------");
+                        Console.WriteLine("        Order Date       |    Bat Name    | Price  |   LoactionId     | CustomerId ");
+                        Console.WriteLine("-------------------------------------------------------------------------------------");
 
                         foreach (Orders order in orders)
                         {
+                          BaseballBat bat = batActions.GetBaseballBatById(order.Id);
 
-                            Console.WriteLine($"     {order.OrderDate}       |   {order.LocationId}    |    {order.CustomerId}  ");
+                            Console.WriteLine($"     {order.OrderDate}   |  {bat.ProductName}|  {bat.ProductPrice}   |      {order.LocationId}    |    {order.CustomerId}  ");
                         }
 
                         break;
                     case "1":
 
-                        string done = "";
-                        do
-                        {
+                        
+                        
                             List<Inventory> currInventory = new List<Inventory>();
 
                             currInventory = inventoryActions.GetInventoryByLocationId(location.LocationId);
-                            Console.WriteLine("------------------------------------");
-                            Console.WriteLine("InventoryId  | BatID | Quantity ");
-                            Console.WriteLine("------------------------------------");
+                            Console.WriteLine("----------------------------------------------");
+                            Console.WriteLine("InventoryId  | BatID |    Bat Name    | Quantity ");
+                            Console.WriteLine("----------------------------------------------");
                             foreach (Inventory Inventory in currInventory)
-                            {
-                                Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |    {Inventory.Quantity}");
+                            {   
+                                BaseballBat bat = batActions.GetBaseballBatById(Inventory.BaseballBatsId);
+                                Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |  {bat.ProductName}  |    {Inventory.Quantity}");
                             }
 
                             Inventory inventory = new Inventory();
@@ -104,11 +111,7 @@ namespace StoreAppUI.Menus
                             inventoryActions.UpdateInventory(inventory);
                             Log.Information("Inventory Updated By Manger");
 
-                            Console.Write("Updated Inventory! Continue? (y/n):");
-                            done = Console.ReadLine();
-
-                        } while (done != "n");
-
+                            Console.WriteLine("Updated Inventory!");
 
                         break;
                     default:

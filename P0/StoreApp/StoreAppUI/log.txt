@@ -76,3 +76,44 @@
 2020-11-04 09:49:16.221 -05:00 [INF] Entered Main Menu
 2020-11-04 09:49:55.468 -05:00 [INF] Program Started
 2020-11-04 09:50:40.364 -05:00 [INF] Program Started
+2020-11-04 09:51:36.273 -05:00 [INF] Program Started
+2020-11-04 09:52:08.680 -05:00 [INF] Inventory Updated By Manger
+2020-11-04 09:52:22.278 -05:00 [INF] Inventory Updated By Manger
+2020-11-04 09:52:38.534 -05:00 [INF] Inventory Updated By Manger
+2020-11-04 09:52:49.365 -05:00 [INF] Inventory Updated By Manger
+2020-11-04 09:54:53.388 -05:00 [INF] Program Started
+2020-11-04 10:24:41.030 -05:00 [INF] Program Started
+2020-11-04 10:24:56.715 -05:00 [INF] Program Started
+2020-11-04 10:42:11.092 -05:00 [INF] Program Started
+2020-11-04 10:42:27.421 -05:00 [INF] Entered Main Menu
+2020-11-04 10:42:58.242 -05:00 [INF] Finally block reached
+2020-11-04 10:43:11.722 -05:00 [INF] Finally block reached
+2020-11-04 10:43:22.553 -05:00 [INF] Finally block reached
+2020-11-04 10:43:25.026 -05:00 [INF] Entered Main Menu
+2020-11-04 10:43:29.730 -05:00 [INF] Entered Main Menu
+2020-11-04 10:43:45.893 -05:00 [INF] Program Started
+2020-11-04 10:44:43.592 -05:00 [INF] Inventory Updated By Manger
+2020-11-04 10:45:02.254 -05:00 [INF] Inventory Updated By Manger
+2020-11-04 17:50:27.130 -05:00 [INF] Program Started
+2020-11-04 17:52:08.093 -05:00 [INF] Program Started
+2020-11-04 17:53:37.317 -05:00 [INF] Program Started
+2020-11-04 17:55:53.493 -05:00 [INF] Program Started
+2020-11-04 17:56:14.536 -05:00 [INF] Inventory Updated By Manger
+2020-11-04 18:32:04.686 -05:00 [INF] Program Started
+2020-11-04 18:33:02.411 -05:00 [INF] Program Started
+2020-11-04 18:33:35.204 -05:00 [INF] Program Started
+2020-11-04 18:33:52.007 -05:00 [INF] Program Started
+2020-11-04 18:34:02.976 -05:00 [INF] Entered Main Menu
+2020-11-04 18:34:13.414 -05:00 [INF] Finally block reached
+2020-11-04 18:34:19.708 -05:00 [INF] Finally block reached
+2020-11-04 18:34:25.377 -05:00 [INF] Finally block reached
+2020-11-04 18:34:26.812 -05:00 [INF] Entered Main Menu
+2020-11-04 18:34:29.039 -05:00 [INF] Entered Main Menu
+2020-11-04 18:34:47.402 -05:00 [INF] Program Started
+2020-11-04 18:35:56.008 -05:00 [INF] Program Started
+2020-11-04 18:36:29.979 -05:00 [INF] Inventory Updated By Manger
+2020-11-04 18:37:15.807 -05:00 [INF] Program Started
+2020-11-04 18:38:13.466 -05:00 [INF] Program Started
+2020-11-04 18:43:50.798 -05:00 [INF] Program Started
+2020-11-04 18:48:02.120 -05:00 [INF] Program Started
+2020-11-04 18:49:29.834 -05:00 [INF] Program Started

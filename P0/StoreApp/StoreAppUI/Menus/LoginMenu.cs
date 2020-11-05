@@ -64,12 +64,13 @@ namespace StoreAppUI.Menus
             Location choosenLocation = new Location();
             Customer signedInCustomer = new Customer();
 
+            choosenLocation = locationActions.GetLocationById(location);
+            signedInCustomer = customerActions.GetCustomerByEmail(email);
+
             try
             {
                 if (managerActions.ManagerExists(email, passWord))
                 {   
-                    choosenLocation = locationActions.GetLocationById(location);
-                    signedInCustomer = customerActions.GetCustomerByEmail(email);
 
                     IMenu managerMainMenu = new ManagerMainMenu(context, managerRepoActions, locationRepoActions, inventoryRepoActions, orderRepoActions, baseballBatRepoActions, choosenLocation);
                     managerMainMenu.Start();

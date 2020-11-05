@@ -32,6 +32,7 @@ namespace StoreAppUI.Menus
             this.locationActions = new LocationActions(context, locationRepoActions);
             this.inventoryActions = new InventoryActions(context, inventoryRepoActions);
             this.orderActions = new OrderActions(context,orderRepoActions);
+            this.batActions = new BaseballBatActions(context, batRepoActions);
 
             this.customerRepoActions = customerRepoActions;
             this.locationRepoActions = locationRepoActions;
@@ -63,14 +64,17 @@ namespace StoreAppUI.Menus
                             List<Inventory> currInventory = new List<Inventory>();
 
                             currInventory = inventoryActions.GetInventoryByLocationId(currLocation.LocationId);
-                            
-                            Console.WriteLine("------------------------------------");
-                            Console.WriteLine("InventoryId  | BatID | Quantity ");
-                            Console.WriteLine("------------------------------------");
+
+                            Console.WriteLine("--------------------------------------------");
+                            Console.WriteLine(" InventoryId  | BatID | Bat Name | Quantity ");
+                            Console.WriteLine("-------------------------------------------");
+
                             foreach (Inventory Inventory in currInventory)
-                            {   
-                                
-                                Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |    {Inventory.Quantity}");
+                            {
+
+                                BaseballBat bat = batActions.GetBaseballBatById(Inventory.BaseballBatsId);
+
+                                Console.WriteLine($"     {Inventory.InventoryId}       |   {Inventory.BaseballBatsId}    |  {bat.ProductName}  |   {Inventory.Quantity}");
                             }
 
                             Orders newOrder = new Orders();
@@ -80,7 +84,7 @@ namespace StoreAppUI.Menus
                             int invId;
                             int quantity;
 
-                            Console.WriteLine(" Order by Entering The InventoryId and Quantity Desired");
+                            Console.WriteLine("*Order by Entering The InventoryId and Quantity Desired*");
 
                             Console.Write("InventoryId: ");
                             invId = int.Parse(Console.ReadLine());
@@ -94,6 +98,7 @@ namespace StoreAppUI.Menus
                             newOrder.CustomerId = signedInCustomer.CustomerId;
 
                             inventory.Quantity -= quantity;
+
                             try
                             {
                                 inventoryActions.UpdateInventory(inventory);
@@ -114,7 +119,6 @@ namespace StoreAppUI.Menus
                     case "1":
                         List<Orders> orders = new List<Orders>();
                         orders = orderActions.GetOrdersByCustomerId(signedInCustomer.CustomerId);
-
                         Console.WriteLine("-----------------------------------------------------");
                         Console.WriteLine("        Order Date          | LoactionId | CustomerId ");
                         Console.WriteLine("-----------------------------------------------------");

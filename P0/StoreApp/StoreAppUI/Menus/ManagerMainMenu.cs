@@ -63,14 +63,13 @@ namespace StoreAppUI.Menus
                         
 
                         Console.WriteLine("------------------------------------------------------------------------------------");
-                        Console.WriteLine("        Order Date       |    Bat Name    | Price  |   LoactionId     | CustomerId ");
+                        Console.WriteLine("        Order Date       |         LoactionId     | CustomerId ");
                         Console.WriteLine("-------------------------------------------------------------------------------------");
 
                         foreach (Orders order in orders)
                         {
-                          BaseballBat bat = batActions.GetBaseballBatById(order.Id);
 
-                            Console.WriteLine($"     {order.OrderDate}   |  {bat.ProductName}|  {bat.ProductPrice}   |      {order.LocationId}    |    {order.CustomerId}  ");
+                            Console.WriteLine($"     {order.OrderDate}  |      {order.LocationId}    |    {order.CustomerId}  ");
                         }
 
                         break;
@@ -81,9 +80,9 @@ namespace StoreAppUI.Menus
                             List<Inventory> currInventory = new List<Inventory>();
 
                             currInventory = inventoryActions.GetInventoryByLocationId(location.LocationId);
-                            Console.WriteLine("----------------------------------------------");
+                            Console.WriteLine("-------------------------------------------------");
                             Console.WriteLine("InventoryId  | BatID |    Bat Name    | Quantity ");
-                            Console.WriteLine("----------------------------------------------");
+                            Console.WriteLine("-------------------------------------------------");
                             foreach (Inventory Inventory in currInventory)
                             {   
                                 BaseballBat bat = batActions.GetBaseballBatById(Inventory.BaseballBatsId);
@@ -95,7 +94,7 @@ namespace StoreAppUI.Menus
                             int replenish;
 
                             Console.WriteLine("-------------------------------");
-                            Console.WriteLine("  UPDATE INVENTORY");
+                            Console.WriteLine("      UPDATE INVENTORY");
                             Console.WriteLine("-------------------------------");
 
                             Console.Write("Inventory ID: ");
